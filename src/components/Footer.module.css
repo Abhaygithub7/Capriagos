@@ -1,0 +1,130 @@
+.footer {
+  padding: 5rem 0 2.5rem;
+  background: var(--color-dark-bg);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.mission {
+  text-align: center;
+  padding-bottom: 3rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid rgba(245, 240, 232, 0.1);
+}
+
+.missionText {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+
+.missionSubtext {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.35);
+}
+
+.links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.columnTitle {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 1.25rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.link {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.5);
+  transition: color 0.25s var(--ease-slow);
+}
+
+.link:hover {
+  color: var(--color-red);
+}
+
+.social {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: rgba(255,255,255,0.4);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+  transition: all 0.3s var(--ease-slow);
+}
+
+.socialLink:hover {
+  color: #FFFFFF;
+  border-color: var(--color-red);
+  background: var(--color-red);
+}
+
+.socialLink svg {
+  width: 18px;
+  height: 18px;
+}
+
+.email {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(245, 240, 232, 0.1);
+}
+
+.copyright {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.25);
+}
+
+@media (max-width: 768px) {
+  .links {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .social {
+    justify-content: center;
+  }
+}

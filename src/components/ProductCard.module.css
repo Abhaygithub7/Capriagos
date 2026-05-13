@@ -1,0 +1,178 @@
+.card {
+  position: relative;
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.imageContainer {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-border);
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-slow);
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(26, 26, 26, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-slow);
+}
+
+.card:hover .overlay {
+  opacity: 1;
+}
+
+.quickAdd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: var(--color-black);
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s var(--ease-slow), box-shadow 0.25s;
+}
+
+.quickAdd:hover {
+  background: var(--color-red);
+  box-shadow: var(--shadow-red);
+}
+
+.wishlistButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--color-black);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  z-index: 5;
+}
+
+.card:hover .wishlistButton,
+.wishlistButton.wishlisted {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.wishlistButton:hover {
+  color: var(--color-red);
+}
+
+.wishlistButton.wishlisted {
+  color: var(--color-red);
+}
+
+.featuredBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 3px 10px;
+  background: var(--color-red);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  z-index: 5;
+}
+
+.info {
+  padding: 1rem 0;
+}
+
+.name {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--color-black);
+  margin-bottom: 0.25rem;
+  transition: color 0.3s var(--ease-slow);
+}
+
+.card:hover .name {
+  color: var(--color-red);
+}
+
+.price {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-red);
+}
+
+.sizes {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.sizeDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-red);
+  opacity: 0.5;
+}
+
+.moreSizes {
+  font-size: 10px;
+  color: #888;
+  margin-left: 4px;
+}
+
+@media (max-width: 768px) {
+  .imageContainer {
+    aspect-ratio: 4 / 5;
+  }
+
+  .wishlistButton {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

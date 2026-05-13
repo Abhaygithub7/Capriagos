@@ -1,0 +1,60 @@
+.cursorRing {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--color-red);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+  will-change: transform;
+}
+
+.cursorRing::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px solid var(--color-red);
+  border-radius: 50%;
+  opacity: 0.25;
+}
+
+.cursorRing:global(.hover) {
+  background-color: rgba(226, 6, 19, 0.15);
+}
+
+.cursorDot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-red);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+}
+
+.cursorText {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-red);
+  font-weight: 700;
+}
+
+@media (pointer: coarse) {
+  .cursorRing,
+  .cursorDot {
+    display: none;
+  }
+}
