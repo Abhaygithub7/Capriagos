@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useAnimate, useInView } from 'framer-motion';
 
 export function usePageEntrance() {
@@ -13,31 +13,31 @@ export function usePageEntrance() {
     return () => clearTimeout(timer);
   }, []);
 
-  const sequence = async () => {
-    if (!scope.current) return;
-
-    const elements = scope.current.querySelectorAll('[data-animate]');
-    const entranceOrder = parseInt(elements[0]?.dataset.animate || '0', 10);
-
-    for (let i = 0; i < elements.length; i++) {
-      const el = elements[i];
-      const order = parseInt(el.dataset.animate || '0', 10);
-
-      if (order === entranceOrder) {
-        await animate(
-          el,
-          { opacity: [0, 1], y: [20, 0] },
-          { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-        );
-      }
-    }
-  };
-
   useEffect(() => {
-    if (isLoaded) {
-      sequence();
-    }
-  }, [isLoaded, scope]);
+    if (!isLoaded) return;
+
+    const sequence = async () => {
+      if (!scope.current) return;
+
+      const elements = scope.current.querySelectorAll('[data-animate]');
+      const entranceOrder = parseInt(elements[0]?.dataset.animate || '0', 10);
+
+      for (let i = 0; i < elements.length; i++) {
+        const el = elements[i];
+        const order = parseInt(el.dataset.animate || '0', 10);
+
+        if (order === entranceOrder) {
+          await animate(
+            el,
+            { opacity: [0, 1], y: [20, 0] },
+            { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+          );
+        }
+      }
+    };
+
+    sequence();
+  }, [isLoaded, scope, animate]);
 
   return { scope, isLoaded, animate };
 }
@@ -50,16 +50,10 @@ export function useStaggeredEntrance(itemCount, options = {}) {
     ease = [0.22, 1, 0.36, 1],
   } = options;
 
-  const [isInView, setIsInView] = useState(false);
-  const ref = useInView({ once: true, margin: '-100px' });
+  const inViewRef = useRef(null);
+  const isInView = useInView(inViewRef, { once: true, margin: '-100px' });
 
-  useEffect(() => {
-    if (ref) {
-      setIsInView(true);
-    }
-  }, [ref]);
-
-  return { ref, isInView, staggerDelay, duration, ease, initialDelay };
+  return { ref: inViewRef, isInView, staggerDelay, duration, ease, initialDelay };
 }
 
 export default usePageEntrance;

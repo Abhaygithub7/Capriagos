@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { motion, useDragControls } from 'framer-motion';
+import { motion } from 'framer-motion';
 import styles from './LookbookSection.module.css';
 
 const LOOKBOOK_IMAGES = [

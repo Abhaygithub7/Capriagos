@@ -9,7 +9,7 @@ export function useScrollProgress(options = {}) {
 
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: target || containerRef,
     offset,
   });
 
@@ -26,8 +26,9 @@ export function useScrollProgress(options = {}) {
 
 export function useSectionScrollProgress(sectionRef) {
   const progress = useRef(0);
+  const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, 'change', (latest) => {
+  useMotionValueEvent(scrollY, 'change', () => {
     if (!sectionRef.current) return;
 
     const rect = sectionRef.current.getBoundingClientRect();
@@ -35,7 +36,7 @@ export function useSectionScrollProgress(sectionRef) {
 
     const start = rect.top - windowHeight;
     const end = rect.bottom;
-    const total = start + rect.height;
+    const total = end - start;
 
     progress.current = Math.max(0, Math.min(1, -start / total));
   });

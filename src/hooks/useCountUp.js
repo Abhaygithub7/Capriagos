@@ -18,7 +18,6 @@ export function useCountUp(end, options = {}) {
 
   useEffect(() => {
     if (!isInView || !shouldAnimate) {
-      setCount(start);
       return;
     }
 

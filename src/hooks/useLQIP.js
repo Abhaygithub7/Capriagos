@@ -1,20 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { useInView } from 'framer-motion';
 
-export function useLQIP(src, placeholderSrc) {
+export function useLQIP(src) {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [hasEnteredView, setHasEnteredView] = useState(false);
   const localRef = useRef(null);
   const inView = useInView(localRef, { once: true, margin: '200px' });
 
   useEffect(() => {
-    if (inView && !hasEnteredView) {
-      setHasEnteredView(true);
-    }
-  }, [inView, hasEnteredView]);
-
-  useEffect(() => {
-    if (!src || !hasEnteredView) return;
+    if (!src || !inView) return;
 
     const img = new Image();
     img.src = src;
@@ -26,12 +19,12 @@ export function useLQIP(src, placeholderSrc) {
     img.onerror = () => {
       setIsLoaded(true);
     };
-  }, [src, hasEnteredView]);
+  }, [src, inView]);
 
   return {
     ref: localRef,
     isLoaded,
-    shouldShowPlaceholder: !isLoaded && hasEnteredView,
+    shouldShowPlaceholder: !isLoaded && inView,
     shouldShowFullImage: isLoaded,
   };
 }
