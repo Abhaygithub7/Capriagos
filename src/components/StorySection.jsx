@@ -10,7 +10,6 @@ export default function StorySection() {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   return (
     <section className={styles.section} id="story" ref={sectionRef}>

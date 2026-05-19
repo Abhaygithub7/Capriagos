@@ -15,6 +15,25 @@ const steps = [
   { icon: '❤️', title: 'Loved Again', description: 'Finding their way to someone new' },
 ];
 
+function StatItem({ stat, index }) {
+  const { ref, count } = useCountUp(stat.value, { duration: 2, start: 0 });
+  return (
+    <motion.div
+      ref={ref}
+      className={styles.stat}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.2 }}
+    >
+      <span className={styles.statNumber}>
+        {stat.value === '∞' ? stat.value : count}{stat.suffix}
+      </span>
+      <span className={styles.statLabel}>{stat.label}</span>
+    </motion.div>
+  );
+}
+
 export default function StoryPage() {
   return (
     <div className={styles.page}>
@@ -60,25 +79,9 @@ export default function StoryPage() {
       </section>
 
       <section className={styles.statsStrip}>
-        {stats.map((stat, index) => {
-          const { ref, count } = useCountUp(stat.value, { duration: 2, start: 0 });
-          return (
-            <motion.div
-              key={stat.label}
-              ref={ref}
-              className={styles.stat}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-            >
-              <span className={styles.statNumber}>
-                {stat.value === '∞' ? stat.value : count}{stat.suffix}
-              </span>
-              <span className={styles.statLabel}>{stat.label}</span>
-            </motion.div>
-          );
-        })}
+        {stats.map((stat, index) => (
+          <StatItem key={stat.label} stat={stat} index={index} />
+        ))}
       </section>
 
       <section className={styles.processSection}>

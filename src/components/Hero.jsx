@@ -15,7 +15,6 @@ export default function Hero() {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   return (
@@ -64,7 +63,7 @@ export default function Hero() {
         >
           <span className={styles.ctaLabel}>Select a category</span>
           <div className={styles.categories}>
-            {categories.map((cat, index) => (
+            {categories.map((cat) => (
               <motion.a
                 key={cat.label}
                 href={cat.href}
